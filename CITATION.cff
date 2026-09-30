@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+title: "Prediction as Power: Artificial Intelligence, Wind, and the Ordering of European Electricity Markets"
+message: If you use this manuscript, please cite it as below.
+type: manuscript
+authors:
+  - family-names: Aryan
+    given-names: Rishabh
+    email: rishabh.250201011@iiitbh.ac.in
+    orcid: "https://orcid.org/0009-0004-7595-9440"
+    affiliation: "Indian Institute of Information Technology, Bhagalpur"
+license: MIT
+repository-code: "https://github.com/Rishabh-bgp/prediction-as-power"
+url: "https://github.com/Rishabh-bgp/prediction-as-power"
+keywords:
+  - electricity markets
+  - wind forecasting
+  - artificial intelligence
+  - merit order
+  - imbalance
+  - SDAC
+  - SIDC
