@@ -20,11 +20,18 @@ An open working paper on how artificial-intelligence wind forecasts re-order cou
 
 ## 1. Start here
 
-If you have one minute: open the manuscript notebook.
+If you have one minute: open the manuscript notebook (text only).
 
 [Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb](Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb)
 
-That file *is* the paper. It is Markdown only. GitHub renders the sections and the equations in the browser. This README is the handbook around that file: why the paper exists, how the markets work, what the laboratory numbers mean, and what you may cite.
+That file *is* the public paper. It is Markdown only. GitHub renders the sections and the equations in the browser.
+
+The executable laboratories live separately:
+
+- Version 1: [notebooks/v1/prediction_as_power_european_electricity_markets.ipynb](notebooks/v1/prediction_as_power_european_electricity_markets.ipynb)
+- Version 2: [notebooks/v2/prediction_as_power_european_electricity_markets.ipynb](notebooks/v2/prediction_as_power_european_electricity_markets.ipynb)
+
+This README is the handbook around those files: why the paper exists, how the markets work, what the laboratory numbers mean, and what you may cite.
 
 If you have ten minutes: read Sections 2–6 of this README, then the Abstract and Section I in the notebook.
 
@@ -43,6 +50,7 @@ If you have an hour: read the notebook through Section X and [docs/laboratory-di
 7. [Who should read this repository](#7-who-should-read-this-repository)
 8. [Who should not treat it as a trading manual](#8-who-should-not-treat-it-as-a-trading-manual)
 9. [Files and what each one is for](#9-files-and-what-each-one-is-for)
+9a. [Notebook versions](#9a-notebook-versions)
 10. [How to read the manuscript on GitHub](#10-how-to-read-the-manuscript-on-github)
 11. [How to read the manuscript on your machine](#11-how-to-read-the-manuscript-on-your-machine)
 12. [Suggested reading paths](#12-suggested-reading-paths)
@@ -126,12 +134,18 @@ Do not use this repository to size a bid. The price function is stylised. The im
 
 ```
 prediction-as-power/
-├── Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb   ← canonical paper
+├── Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb
 ├── prediction_as_power_european_electricity_markets.ipynb
-├── notebooks/v1/                                        ← laboratory, version 1
-├── notebooks/v2/                                        ← laboratory, version 2
-├── README.md                                            ← this handbook
-├── LICENSE                                              ← MIT
+├── notebooks/
+│   ├── README.md
+│   ├── v1/
+│   │   ├── README.md
+│   │   └── prediction_as_power_european_electricity_markets.ipynb
+│   └── v2/
+│       ├── README.md
+│       └── prediction_as_power_european_electricity_markets.ipynb
+├── README.md
+├── LICENSE
 ├── CITATION.cff
 ├── CONTRIBUTING.md
 └── docs/
@@ -142,22 +156,45 @@ prediction-as-power/
     └── citation-and-reuse.md
 ```
 
-| File | Read it when you need |
+| File | Role |
 |---|---|
-| `Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb` | The paper itself: argument, tables, references, appendices |
-| `README.md` | Orientation, disclaimers, citation, licence |
-| `docs/institutional-background.md` | SDAC / SIDC / balancing / document types |
-| `docs/laboratory-disclaimer.md` | Which numbers are synthetic |
-| `docs/citation-and-reuse.md` | How to cite and what MIT does not cover |
-| `CONTRIBUTING.md` | How to propose a correction |
-| `CITATION.cff` | Automated citation on GitHub |
-| `notebooks/v1/prediction_as_power_european_electricity_markets.ipynb` | **Version 1 laboratory** (original executable essay) |
-| `notebooks/v2/prediction_as_power_european_electricity_markets.ipynb` | **Version 2 laboratory** (expanded executable essay) |
+| `Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb` | Public manuscript. Markdown only. No laboratory code. |
+| `notebooks/v1/prediction_as_power_european_electricity_markets.ipynb` | Version 1 laboratory: first executable essay. |
+| `notebooks/v2/prediction_as_power_european_electricity_markets.ipynb` | Version 2 laboratory: expanded executable essay. |
+| `notebooks/README.md` | Short index of the three notebooks. |
+| `prediction_as_power_european_electricity_markets.ipynb` | Copy of the laboratory essay at repository root (same family as v1). |
+| `README.md` | This handbook. |
+| `docs/` | Institutions, reading guide, disclaimer, citation. |
+| `LICENSE` | MIT. |
+| `CITATION.cff` | Machine-readable citation. |
+| `CONTRIBUTING.md` | How to propose a correction. |
 
+## 9a. Notebook versions
 
-The canonical manuscript notebook is **Markdown cells only**. It exists because GitHub’s PDF previewer failed on the LibreOffice file. Do not expect that notebook to train a model.
+There are three public notebook objects. They are not interchangeable.
 
----
+| Object | Cells (approx.) | Code? | Use it for |
+|---|---|---|---|
+| **Manuscript** (`Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb`) | Markdown only | No | Reading the paper on GitHub; equations; references |
+| **Version 1** (`notebooks/v1/…`) | 31 cells (15 code, 16 Markdown) | Yes | Reproducing the original laboratory |
+| **Version 2** (`notebooks/v2/…`) | 35 cells (15 code, 20 Markdown) | Yes | Reproducing the expanded laboratory and longer narrative |
+
+**Version 1** is the first implementation: synthetic DE-like zone, fleet power curve, NWP versus AI wind errors, merit-order diagnostics, price models, imbalance cash-flow, thermal starts, cross-border shock.
+
+**Version 2** keeps that pipeline and adds author front matter plus a fuller written argument around the same experiments.
+
+**Manuscript** is the 35-page paper converted to Markdown cells so GitHub can display it. It must not be run as a model-training notebook.
+
+To run version 1 or version 2 locally:
+
+```bash
+git clone https://github.com/Rishabh-bgp/prediction-as-power.git
+cd prediction-as-power
+pip install numpy pandas matplotlib seaborn scikit-learn
+# then open notebooks/v1/... or notebooks/v2/... and Restart & Run All
+```
+
+Results from v1 and v2 are laboratory magnitudes. Read [docs/laboratory-disclaimer.md](docs/laboratory-disclaimer.md) before citing any euro figure.
 
 ## 10. How to read the manuscript on GitHub
 
@@ -389,7 +426,10 @@ These are starting citations, not a complete bibliography. The notebook referenc
 GitHub’s in-browser PDF preview failed on the LibreOffice file (“Unable to render code block”). The notebook is the readable public object.
 
 **Why is there no code in the manuscript notebook?**  
-So that GitHub renders a paper rather than a laboratory. Mixing executable cells with thirty-five pages of prose made the object harder to read and easier to break.
+So that GitHub renders a paper rather than a laboratory. Mixing executable cells with thirty-five pages of prose made the object harder to read and easier to break. The code is in `notebooks/v1/` and `notebooks/v2/`.
+
+**Which notebook should I run?**  
+Run version 1 if you want the original laboratory. Run version 2 if you want the same laboratory with the longer narrative. Do not run the manuscript notebook expecting model output.
 
 **Are the 12.90 EUR/MWh and 3.33 million EUR figures real German outcomes?**  
 No. They are laboratory magnitudes. See §18.
