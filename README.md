@@ -26,7 +26,11 @@ If you have one minute: open the manuscript notebook (text only).
 
 That file *is* the public paper. It is Markdown only. GitHub renders the sections and the equations in the browser.
 
-The executable laboratories live separately:
+The **final coded version** of the laboratory is at the repository root:
+
+- **Final coded notebook:** [prediction_as_power_european_electricity_markets.ipynb](prediction_as_power_european_electricity_markets.ipynb)
+
+Earlier coded drafts:
 
 - Version 1: [notebooks/v1/prediction_as_power_european_electricity_markets.ipynb](notebooks/v1/prediction_as_power_european_electricity_markets.ipynb)
 - Version 2: [notebooks/v2/prediction_as_power_european_electricity_markets.ipynb](notebooks/v2/prediction_as_power_european_electricity_markets.ipynb)
@@ -135,7 +139,7 @@ Do not use this repository to size a bid. The price function is stylised. The im
 ```
 prediction-as-power/
 ├── Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb
-├── prediction_as_power_european_electricity_markets.ipynb
+├── prediction_as_power_european_electricity_markets.ipynb  ← FINAL CODED VERSION
 ├── notebooks/
 │   ├── README.md
 │   ├── v1/
@@ -162,7 +166,7 @@ prediction-as-power/
 | `notebooks/v1/prediction_as_power_european_electricity_markets.ipynb` | Version 1 laboratory: first executable essay. |
 | `notebooks/v2/prediction_as_power_european_electricity_markets.ipynb` | Version 2 laboratory: expanded executable essay. |
 | `notebooks/README.md` | Short index of the three notebooks. |
-| `prediction_as_power_european_electricity_markets.ipynb` | Copy of the laboratory essay at repository root (same family as v1). |
+| `prediction_as_power_european_electricity_markets.ipynb` | **Final coded version** of the laboratory (executable). |
 | `README.md` | This handbook. |
 | `docs/` | Institutions, reading guide, disclaimer, citation. |
 | `LICENSE` | MIT. |
@@ -175,15 +179,21 @@ There are three public notebook objects. They are not interchangeable.
 
 | Object | Cells (approx.) | Code? | Use it for |
 |---|---|---|---|
+| **Final coded version** (`prediction_as_power_european_electricity_markets.ipynb`) | Executable laboratory | Yes | **Run this** to reproduce the coded results |
 | **Manuscript** (`Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb`) | Markdown only | No | Reading the paper on GitHub; equations; references |
-| **Version 1** (`notebooks/v1/…`) | 31 cells (15 code, 16 Markdown) | Yes | Reproducing the original laboratory |
-| **Version 2** (`notebooks/v2/…`) | 35 cells (15 code, 20 Markdown) | Yes | Reproducing the expanded laboratory and longer narrative |
+| **Version 1** (`notebooks/v1/…`) | 31 cells (15 code, 16 Markdown) | Yes | Original laboratory draft |
+| **Version 2** (`notebooks/v2/…`) | 35 cells (15 code, 20 Markdown) | Yes | Expanded laboratory draft |
 
 **Version 1** is the first implementation: synthetic DE-like zone, fleet power curve, NWP versus AI wind errors, merit-order diagnostics, price models, imbalance cash-flow, thermal starts, cross-border shock.
 
 **Version 2** keeps that pipeline and adds author front matter plus a fuller written argument around the same experiments.
 
+**Final coded version** (`prediction_as_power_european_electricity_markets.ipynb`, repository root) is the laboratory you should run if you want the coded results.
+
 **Manuscript** is the 35-page paper converted to Markdown cells so GitHub can display it. It must not be run as a model-training notebook.
+
+**Version 1** and **Version 2** under `notebooks/` are kept as dated drafts of that laboratory.
+
 
 To run version 1 or version 2 locally:
 
@@ -429,7 +439,7 @@ GitHub’s in-browser PDF preview failed on the LibreOffice file (“Unable to r
 So that GitHub renders a paper rather than a laboratory. Mixing executable cells with thirty-five pages of prose made the object harder to read and easier to break. The code is in `notebooks/v1/` and `notebooks/v2/`.
 
 **Which notebook should I run?**  
-Run version 1 if you want the original laboratory. Run version 2 if you want the same laboratory with the longer narrative. Do not run the manuscript notebook expecting model output.
+Run the **final coded version** at the root: `prediction_as_power_european_electricity_markets.ipynb`. Use `notebooks/v1/` and `notebooks/v2/` only if you need the earlier drafts. Do not run the manuscript notebook expecting model output.
 
 **Are the 12.90 EUR/MWh and 3.33 million EUR figures real German outcomes?**  
 No. They are laboratory magnitudes. See §18.
