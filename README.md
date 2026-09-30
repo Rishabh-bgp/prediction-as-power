@@ -29,3 +29,10 @@ Numbers in the paper are laboratory magnitudes, not official ENTSO-E statistics.
 ## Licence
 
 See LICENSE.
+
+## Files
+
+- Prediction_as_Power_Rishabh_Aryan.pdf — 35-page manuscript.
+- Prediction_as_Power_Rishabh_Aryan.docx — Word source.
+
+If GitHub shows “Unable to render code block” on the PDF, use Download (raw). That message is a previewer fault, not a corrupt file.
