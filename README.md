@@ -4,225 +4,406 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0004--7595--9440-A6CE39.svg)](https://orcid.org/0009-0004-7595-9440)
-[![Open working paper](https://img.shields.io/badge/status-working%20paper-informational)](#status)
+[![Open working paper](https://img.shields.io/badge/status-working%20paper-informational)](#19-status)
 
-Open working paper by **Er. Rishabh Aryan**  
-M.Tech (Artificial Intelligence and Data Science)  
-Department of Computer Science and Engineering  
-Indian Institute of Information Technology, Bhagalpur (Bihar), India
+An open working paper on how artificial-intelligence wind forecasts re-order coupled European electricity markets.
 
-- Institutional email: [rishabh.250201011@iiitbh.ac.in](mailto:rishabh.250201011@iiitbh.ac.in)
-- ORCID: [0009-0004-7595-9440](https://orcid.org/0009-0004-7595-9440)
-
-This repository publishes the manuscript in a form GitHub can render: a Markdown-only Jupyter notebook. It also holds documentation, a citation file, and the MIT licence.
-
----
-
-## Table of contents
-
-1. [Thesis](#thesis)
-2. [Abstract](#abstract)
-3. [Who this is for](#who-this-is-for)
-4. [Files in this repository](#files-in-this-repository)
-5. [How to read the manuscript on GitHub](#how-to-read-the-manuscript-on-github)
-6. [How to read the manuscript locally](#how-to-read-the-manuscript-locally)
-7. [Outline of the paper](#outline-of-the-paper)
-8. [Institutions the argument uses](#institutions-the-argument-uses)
-9. [Core equations](#core-equations)
-10. [Laboratory magnitudes (with disclaimer)](#laboratory-magnitudes-with-disclaimer)
-11. [What this repository is not](#what-this-repository-is-not)
-12. [Documentation map](#documentation-map)
-13. [Citation](#citation)
-14. [Licence and reuse](#licence-and-reuse)
-15. [Contributing](#contributing)
-16. [Status](#status)
-17. [Contact](#contact)
+**Author.** Er. Rishabh Aryan  
+**Programme.** M.Tech (Artificial Intelligence and Data Science)  
+**Department.** Computer Science and Engineering  
+**Institution.** Indian Institute of Information Technology, Bhagalpur (Bihar), India  
+**Email.** [rishabh.250201011@iiitbh.ac.in](mailto:rishabh.250201011@iiitbh.ac.in)  
+**ORCID.** [https://orcid.org/0009-0004-7595-9440](https://orcid.org/0009-0004-7595-9440)  
+**Repository.** [https://github.com/Rishabh-bgp/prediction-as-power](https://github.com/Rishabh-bgp/prediction-as-power)
 
 ---
 
-## Thesis
+## 1. Start here
 
-Classical industrial organisation treats market power as the ability to move price by withholding quantity. In a wind-rich, coupled European electricity market a second channel exists: the ability to occupy the information set on which the market is cleared.
+If you have one minute: open the manuscript notebook.
 
-Wind is unobserved at the day-ahead gate. What is sold is a forecast. Single Day-Ahead Coupling (SDAC) therefore clears *expected* residual load. Single Intraday Coupling (SIDC) trades revisions to that expectation. Balancing prices whatever remains after the last gate. An agent who holds a finer description of wind than the public numerical-weather-prediction baseline can trade the revision before it becomes imbalance. That rent looks, in the accounts, like avoided imbalance. It looks, in the power system, like the right to say which machines run.
+[Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb](Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb)
 
-Artificial-intelligence weather models change the distribution of that description. They do not repeal physics. They change who sees a usable 100-metre wind field, at what lead time, and at what error.
+That file *is* the paper. It is Markdown only. GitHub renders the sections and the equations in the browser. This README is the handbook around that file: why the paper exists, how the markets work, what the laboratory numbers mean, and what you may cite.
 
----
+If you have ten minutes: read Sections 2–6 of this README, then the Abstract and Section I in the notebook.
 
-## Abstract
-
-European day-ahead electricity auctions clear expected residual load, not realised residual load. Wind, at near-zero short-run marginal cost, occupies the base of the merit order. A revision to the wind forecast therefore revises which conventional units are committed, which interconnectors are scheduled, and which hours clear at negative or scarcity prices.
-
-This paper treats the difference between a public NWP baseline and a finer AI description of wind as an allocation problem rather than only a scoring problem. A two-year hourly laboratory of a Germany-like zone coupled to a hydro neighbour is used to make the claim computable. Laboratory magnitudes (price shifts, imbalance cash-flow, avoided thermal starts, cross-border shocks) are synthetic and must not be cited as official ENTSO-E or German statistics. The institutional claim does not depend on them: in this market, prediction is part of dispatch.
-
-**Keywords.** Artificial intelligence; wind power forecasting; European electricity markets; merit-order effect; imbalance costs; day-ahead coupling; Dunkelflaute; information.
+If you have an hour: read the notebook through Section X and [docs/laboratory-disclaimer.md](docs/laboratory-disclaimer.md).
 
 ---
 
-## Who this is for
+## 2. Table of contents
 
-- Readers who want the working paper without a PDF previewer.
-- Students of electricity-market design who need a map of SDAC, SIDC and balancing as *forecast institutions*.
-- Researchers who will replace the synthetic laboratory with Transparency Platform series (document types A.44, A.65, A.69, A.75).
-- Practitioners who need the disclaimer on what the euro figures are not.
+1. [Start here](#1-start-here)
+2. [Table of contents](#2-table-of-contents)
+3. [The claim in plain language](#3-the-claim-in-plain-language)
+4. [Why the paper was written](#4-why-the-paper-was-written)
+5. [Abstract](#5-abstract)
+6. [Keywords](#6-keywords)
+7. [Who should read this repository](#7-who-should-read-this-repository)
+8. [Who should not treat it as a trading manual](#8-who-should-not-treat-it-as-a-trading-manual)
+9. [Files and what each one is for](#9-files-and-what-each-one-is-for)
+10. [How to read the manuscript on GitHub](#10-how-to-read-the-manuscript-on-github)
+11. [How to read the manuscript on your machine](#11-how-to-read-the-manuscript-on-your-machine)
+12. [Suggested reading paths](#12-suggested-reading-paths)
+13. [Outline of the manuscript](#13-outline-of-the-manuscript)
+14. [Institutions](#14-institutions)
+15. [The model, written out](#15-the-model-written-out)
+16. [What the laboratory does and does not do](#16-what-the-laboratory-does-and-does-not-do)
+17. [Headline laboratory magnitudes](#17-headline-laboratory-magnitudes)
+18. [Sentences you may cite, and sentences you may not](#18-sentences-you-may-cite-and-sentences-you-may-not)
+19. [Status](#19-status)
+20. [Related literature (entry points)](#20-related-literature-entry-points)
+21. [Documentation map](#21-documentation-map)
+22. [Glossary](#22-glossary)
+23. [Frequently asked questions](#23-frequently-asked-questions)
+24. [Citation](#24-citation)
+25. [Licence and reuse](#25-licence-and-reuse)
+26. [Contributing](#26-contributing)
+27. [Security and data](#27-security-and-data)
+28. [Contact and correspondence](#28-contact-and-correspondence)
 
 ---
 
-## Files in this repository
+## 3. The claim in plain language
 
-| Path | Role |
+Electricity in coupled Europe is no longer priced mainly by the slow economics of fuel. It is priced by *expectations of weather*.
+
+Wind farms produce when the wind blows. Their short-run marginal cost is near zero. They sit at the bottom of the merit order. When expected wind rises, expected residual load falls, and the day-ahead price usually falls with it. When expected wind collapses on a cold, dark evening, residual load rises and the price can spike.
+
+The day-ahead auction does not see the wind that will actually blow tomorrow. It sees a forecast. Improve the forecast and you change the stack that is committed, the flows that are scheduled, and the hours that clear negative or scarce. That is not a metaphor. It is the gate timetable of SDAC, SIDC and balancing.
+
+Artificial intelligence enters as a second description of the same atmosphere: faster, cheaper to rerun, sometimes more accurate at 100 metres than a public IFS-style control run, and privately held. The public baseline is already socialised by transparency law. The residual around that baseline is a product. This paper names that product.
+
+---
+
+## 4. Why the paper was written
+
+Three facts sat next to each other and were not being read as one fact.
+
+First, European market coupling turned a set of national auctions into a continental machine that clears expected residual load at a common gate.
+
+Second, wind grew large enough that forecast revisions are first-order for prices and for cross-border flows. That is documented in the empirical literature on German day-ahead and intraday prices and in work on how coupled intraday markets absorb German wind updates.
+
+Third, operational AI weather models now sit beside physics-based NWP. Industry evaluations have started to score those models not only in metres per second but in imbalance cost.
+
+The paper is the joint reading: prediction is part of dispatch; dispatch is part of allocation; allocation is political economy as well as statistics.
+
+---
+
+## 5. Abstract
+
+European day-ahead electricity auctions clear expected residual load, not realised residual load. Wind, at near-zero short-run marginal cost, occupies the base of the merit order. A revision to the wind forecast therefore revises which conventional units are committed, which interconnectors are scheduled, and which hours clear at negative or scarcity prices. Artificial-intelligence weather models now produce a private description of that wind that can differ, hour by hour, from the public numerical-weather-prediction baseline that transparency law already socialises.
+
+This paper treats that difference as an allocation problem rather than only a scoring problem. Single Day-Ahead Coupling is a forecast-clearing auction. Single Intraday Coupling is a market in forecast revisions. Balancing settles whatever remains after the last gate. An agent who occupies a finer filtration of weather extracts a rent that appears in the accounts as avoided imbalance and appears in the power system as the right to say which machines run.
+
+A two-year hourly laboratory of a Germany-like zone coupled to a hydro neighbour is used to make the claim computable. An AI-style wind forecast that is about one-third more accurate than a persistent NWP-style forecast at the day-ahead gate produces a mean absolute counterfactual price shift of 12.90 EUR/MWh, reduces stylised imbalance cost on a 100 MW slice by 3.33 million EUR per year, and avoids 254 false committed hours on a 500 MW combined-cycle unit. An 8 GW downward shock to expected home-zone wind raises reconstructed price by about 12 EUR/MWh and increases stylised export. These magnitudes are laboratory objects. The institutional claim does not depend on them.
+
+---
+
+## 6. Keywords
+
+Artificial intelligence; wind power forecasting; European electricity markets; merit-order effect; imbalance costs; day-ahead coupling; Single Intraday Coupling; residual load; value factor; Dunkelflaute; information; Transparency Platform.
+
+---
+
+## 7. Who should read this repository
+
+- Graduate students in energy systems, market design, or applied machine learning who need a compact map from weather models to gates.
+- Researchers preparing an ENTSO-E estimation who want the institutional claim stated before the token is issued.
+- Policy readers who need the distinction between a public baseline and a private residual.
+- Examiners who want the limitations listed in one place.
+
+---
+
+## 8. Who should not treat it as a trading manual
+
+Do not use this repository to size a bid. The price function is stylised. The imbalance function is stressful by design. Fuel and carbon are held constant. Flow-based Core coupling is replaced by a simple NTC. There is no intra-zonal congestion, no outage calendar, and no large-agent impact on the imbalance price. A reader who trades on Table III has misread Section IX.
+
+---
+
+## 9. Files and what each one is for
+
+```
+prediction-as-power/
+├── Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb   ← canonical paper
+├── prediction_as_power_european_electricity_markets.ipynb
+├── README.md                                            ← this handbook
+├── LICENSE                                              ← MIT
+├── CITATION.cff
+├── CONTRIBUTING.md
+└── docs/
+    ├── README.md
+    ├── reading-the-manuscript.md
+    ├── institutional-background.md
+    ├── laboratory-disclaimer.md
+    └── citation-and-reuse.md
+```
+
+| File | Read it when you need |
 |---|---|
-| [Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb](Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb) | **Canonical manuscript.** Markdown cells only. Title, author, abstract, Sections I–X, tables, references, appendices. Equations in LaTeX. |
-| [prediction_as_power_european_electricity_markets.ipynb](prediction_as_power_european_electricity_markets.ipynb) | Companion notebook if present. Not a substitute for the manuscript file above. |
-| [docs/](docs/README.md) | Institutional background, reading guide, laboratory disclaimer, citation note. |
-| [CITATION.cff](CITATION.cff) | Machine-readable citation for GitHub and reference managers. |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | How to propose corrections. |
-| [LICENSE](LICENSE) | MIT License. |
+| `Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb` | The paper itself: argument, tables, references, appendices |
+| `README.md` | Orientation, disclaimers, citation, licence |
+| `docs/institutional-background.md` | SDAC / SIDC / balancing / document types |
+| `docs/laboratory-disclaimer.md` | Which numbers are synthetic |
+| `docs/citation-and-reuse.md` | How to cite and what MIT does not cover |
+| `CONTRIBUTING.md` | How to propose a correction |
+| `CITATION.cff` | Automated citation on GitHub |
 
-The canonical manuscript notebook contains **no executable laboratory code**. That is deliberate. GitHub failed to preview the PDF; the notebook exists so the *text of the paper* can be read in the browser.
-
----
-
-## How to read the manuscript on GitHub
-
-1. Open [Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb](Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb).
-2. Wait for GitHub to render Markdown and MathJax.
-3. If equations appear as raw `$...$` or an old revision appears, hard-refresh the page (Ctrl+Shift+R).
-4. Use the cell headings (I. Introduction through Appendix V) as a table of contents.
-
-GitHub’s notebook viewer typesets:
-
-- inline mathematics: `$R_t$`
-- display mathematics: `$$ ... $$`
-
-If a file page ever shows “Unable to render code block”, that message is a viewer fault. Clone the repository and open the notebook locally.
+The canonical manuscript notebook is **Markdown cells only**. It exists because GitHub’s PDF previewer failed on the LibreOffice file. Do not expect that notebook to train a model.
 
 ---
 
-## How to read the manuscript locally
+## 10. How to read the manuscript on GitHub
+
+1. Open [Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb](https://github.com/Rishabh-bgp/prediction-as-power/blob/main/Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb).
+2. Wait for Markdown and MathJax. Display equations sit in `$$` fences.
+3. If the page shows raw TeX or an old revision, hard-refresh (Ctrl+Shift+R) or append `?raw=0` by simply reopening the blob URL.
+4. If GitHub prints “Unable to render code block”, that is the viewer, not a corrupt file. Clone and open locally.
+5. Scroll by heading: Abstract, I–X, Tables, References, Appendices.
+
+GitHub renders inline math such as `$R_t$` and display math such as
+
+$$
+R_t = D_t - W_t - S_t.
+$$
+
+---
+
+## 11. How to read the manuscript on your machine
 
 ```bash
 git clone https://github.com/Rishabh-bgp/prediction-as-power.git
 cd prediction-as-power
 ```
 
-Open `Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb` in JupyterLab, Jupyter Notebook, VS Code, or any `.ipynb` viewer.
-
-No Python packages are required to *read* the manuscript notebook. Do not expect “Run All” to estimate a market model from that file; the cells are prose.
+Open `Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb` in JupyterLab, Jupyter Notebook, VS Code, or nbdime. No Python package is required to *read* that file. “Restart & Run All” will not estimate German prices from it.
 
 ---
 
-## Outline of the paper
+## 12. Suggested reading paths
 
-| Section | Contents |
+**Market-design path.** README §§3–5, 14–15 → notebook Sections I, III, IV, VIII, X.
+
+**Empirical path.** README §§16–18 → notebook Sections V–VII and IX → `docs/laboratory-disclaimer.md`.
+
+**Examiner path.** notebook Section IX and Appendices Q, S, T → this README §18 → `CONTRIBUTING.md`.
+
+**Citation path.** this README §24 → `CITATION.cff` → notebook References.
+
+---
+
+## 13. Outline of the manuscript
+
+| Section | What it does |
 |---|---|
-| I. Introduction | Sequential markets; prediction as occupancy of an information set |
-| II. Related literature | Merit-order effect; value factors; forecast trading; EPF; AI weather; information as infrastructure |
-| III. Institutional architecture | SDAC, SIDC, balancing, Regulation 543/2013 |
+| Abstract | States the institutional claim and labels the laboratory |
+| I. Introduction | The inversion from fuel-priced to forecast-priced hours |
+| II. Related literature | Merit order, value factors, forecast trading, EPF, AI weather, information |
+| III. Institutional architecture | SDAC, SIDC, balancing, Regulation (EU) No 543/2013 |
 | IV. Model | Residual load, day-ahead argument, imbalance cost, lead time, ordering |
-| V. Laboratory design | Synthetic DE-like zone, power curve, two forecast regimes |
-| VI. Forecast skill and market objects | Lead-time ladder, value factors, Dunkelflaute |
-| VII. Counterfactuals | Price models, merchant imbalance, thermal starts, cross-border shocks |
-| VIII. Who is ordered | Agents, design instruments, limits of the claim |
-| IX. Limitations and a non-synthetic sequel | What to replace with ENTSO-E series |
-| X. Conclusion | Institutional claim separated from laboratory euros |
-| References | Verified bibliographic records |
-| Appendices | Magnitudes, worked day, public baseline versus private residual, examiner checklist |
+| V. Laboratory design | Synthetic DE-like zone, power curve, two forecast colours |
+| VI. Forecast skill and market objects | Lead-time ladder, correlations, value factors, Dunkelflaute |
+| VII. Counterfactuals | Price shift, merchant cash-flow, thermal starts, export shocks |
+| VIII. Who is ordered | Agents, design instruments, what the claim is not |
+| IX. Limitations | Synthetic series and the ENTSO-E sequel |
+| X. Conclusion | Separate the institution from the euros |
+| References | Verified records (Sensfuß; Gürtler–Paulsen; Hirth; Pinson et al.; Boehnke et al.; Lang et al.; Lam et al.; Hardy–Finney; Aliyon–Ritvanen; Uniejewski–Ziel; Weron; Hayek; Regulation 543/2013) |
+| Appendices | Worked magnitudes, a day in the life of a forecast, examiner checklist, data statement |
 
 ---
 
-## Institutions the argument uses
+## 14. Institutions
 
-| Institution | Gate / role | What is priced |
+| Institution | Typical gate | Object |
 |---|---|---|
-| SDAC | About 12:00 CET on $D{-}1$ | Expected residual load |
-| SIDC | Continuous plus discrete intraday auctions | Forecast revisions |
+| SDAC | ~12:00 CET on $D{-}1$ | Expected residual load for day $D$ |
+| SIDC | After SDAC, until close to delivery | Revisions to that expectation |
 | Balancing | After the last energy gate | Remaining system imbalance |
-| Transparency Platform | Continuous publication | Public baseline (prices, load, RES forecasts, generation) |
+| Transparency Platform | Continuous | Public baseline |
 
-Transparency law socialises a baseline. Private AI models capture a residual: faster inference, farm-level power curves, availability. Publishing another official *point* forecast is not the same as publishing an ensemble of residual load.
+**Document types for a non-synthetic sequel**
 
-Further detail: [docs/institutional-background.md](docs/institutional-background.md).
+| Code | Content |
+|---|---|
+| A.44 | Day-ahead prices |
+| A.65 | Load |
+| A.69 | Wind and solar forecasts |
+| A.75 | Actual generation per type |
 
----
-
-## Core equations
-
-Residual load and a compact price:
-
-$$
-R_t = D_t - W_t - S_t
-$$
-
-$$
-P_t = c(R_t) + \psi\left(\frac{R_t}{K_t}\right), \qquad \frac{\partial P_t}{\partial W_t} \le 0
-$$
-
-Day-ahead argument (forecasts, not realisations):
-
-$$
-P^{DA}_t = c\big(\hat{D}_t - \hat{W}^{DA}_t - \hat{S}^{DA}_t\big) + \psi(\cdot) + \varepsilon_t
-$$
-
-Imbalance cost relative to selling realised wind at the day-ahead price:
-
-$$
-(W - \hat{W})\big(P^{\mathrm{imb}} - P^{DA}\big)
-$$
-
-These expressions are defined in Section IV of the notebook.
+More: [docs/institutional-background.md](docs/institutional-background.md).
 
 ---
 
-## Laboratory magnitudes (with disclaimer)
+## 15. The model, written out
 
-The following numbers appear in the manuscript. They come from a synthetic hourly generator. **They are not official German, ENTSO-E, or ACER statistics.**
+Demand within the hour is treated as approximately inelastic. Wind and solar enter as near-zero short-run marginal cost. Residual load is
 
-| Object | Laboratory value |
+$$
+R_t = D_t - W_t - S_t.
+$$
+
+A compact price is a conventional stack plus a scarcity term in tightness:
+
+$$
+P_t = c(R_t) + \psi\left(\frac{R_t}{K_t}\right), \qquad \frac{\partial P_t}{\partial W_t} \le 0.
+$$
+
+The day-ahead auction substitutes forecasts for realisations:
+
+$$
+P^{DA}_t = c\big(\hat{D}_t - \hat{W}^{DA}_t - \hat{S}^{DA}_t\big) + \psi(\cdot) + \varepsilon_t.
+$$
+
+A merchant who sold $\hat{W}$ day-ahead and is settled on $W$ at the imbalance price faces, relative to selling $W$ at $P^{DA}$,
+
+$$
+(W - \hat{W})\big(P^{\mathrm{imb}} - P^{DA}\big).
+$$
+
+Lead time is itself a product. Let $\sigma^2(\tau)$ be wind-speed error variance at lead $\tau$. The private value of a model is the path of $\sigma^2$ from $D{-}1$ through $H{-}6$ to $H{-}1$, because each SIDC gate can capitalise a revision.
+
+---
+
+## 16. What the laboratory does and does not do
+
+**Does.** Builds two years of hourly load, wind, solar, residual load and a convex price. Passes NWP-style and AI-style wind-speed errors through the same fleet power curve. Attaches a lead-time ladder. Fits reduced-form price models and swaps only the wind input. Scores merchant imbalance on a 100 MW slice. Applies a binary start rule to a 500 MW combined-cycle unit. Shocks expected home-zone wind and records stylised export to a hydro neighbour.
+
+**Does not.** Use an ENTSO-E token. Implement Core flow-based coupling. Solve a mixed-integer unit-commitment problem. Model a farm large enough to set $P^{\mathrm{imb}}$. Give solar its own AI residual. Vary fuel or carbon. Represent storage, elastic demand, or intra-zonal congestion.
+
+The laboratory is an argument with numbers. It is not an official impact assessment of any named vendor model.
+
+---
+
+## 17. Headline laboratory magnitudes
+
+Treat every cell as a laboratory object.
+
+| Object | Value |
 |---|---|
 | Mean price | 48.57 EUR/MWh |
-| Negative-price hours | 19.5 percent of hours |
-| Correlation of price with residual load | +0.893 |
+| Negative-price hours | 19.5% |
+| Corr(price, residual load) | +0.893 |
+| Corr(price, wind) | −0.603 |
 | Wind value factor | 0.400 |
 | Solar value factor | −0.331 |
-| Day-ahead wind MAE, NWP-style | 9,078 MW (12.97 percent of 70 GW) |
-| Day-ahead wind MAE, AI-style | 5,971 MW (8.53 percent of 70 GW) |
-| Reduction | 34.2 percent |
-| Counterfactual mean absolute price shift | 12.90 EUR/MWh |
-| Ninetieth percentile of that shift | 30.89 EUR/MWh |
-| Stylised imbalance-cost change on a 100 MW slice | −3.33 million EUR per year |
-| Avoided false committed hours, 500 MW CCGT | 254 |
+| Day-ahead wind MAE, NWP-style | 9,078 MW (12.97% of 70 GW) |
+| Day-ahead wind MAE, AI-style | 5,971 MW (8.53% of 70 GW) |
+| MAE reduction | 34.2% |
+| Counterfactual mean \|ΔP\| | 12.90 EUR/MWh |
+| 90th percentile \|ΔP\| | 30.89 EUR/MWh |
+| Imbalance-cost change, 100 MW slice | −3.33 million EUR / year |
+| Avoided false CCGT hours (500 MW) | 254 |
+| −8 GW expected-wind shock, change in mean price | about +12 EUR/MWh |
 
-Cite the *sign and the mechanism*. Do not cite the euros as measured German market outcomes. Full wording: [docs/laboratory-disclaimer.md](docs/laboratory-disclaimer.md).
-
----
-
-## What this repository is not
-
-- It is not an official impact assessment of AIFS, GraphCast, or WeatherNext.
-- It is not a live feed of ENTSO-E data.
-- It is not a trading signal.
-- It is not a claim of abuse of dominance under competition law.
-- The manuscript notebook is not a training pipeline and does not require GPU hardware.
+The 25–30 percent 100-metre wind MAE figure discussed in the text is attributed to an industry evaluation of WeatherNext 3 versus IFS, not to the AIFS system paper.
 
 ---
 
-## Documentation map
+## 18. Sentences you may cite, and sentences you may not
 
-| Document | Question it answers |
+**May be cited as institutional or theoretical claims**
+
+- The day-ahead auction in coupled Europe clears expected residual load.
+- Wind forecast revisions are traded in SIDC and settled, if they survive, in balancing.
+- The slope of price with respect to expected wind is non-positive and steeper in tight hours.
+- Mean absolute error in metres per second is not a sufficient economic score.
+- Public transparency socialises a baseline; private models capture a residual.
+- Coupling transmits the consequences of a forecast that may not have been shared.
+- Thermal start costs are part of the social bill of forecast error.
+
+**Must not be cited as official statistics**
+
+- Day-ahead AI wind MAE is 5,971 MW.
+- Mean absolute price shift is 12.90 EUR/MWh.
+- A 100 MW slice saves 3.33 million EUR per year in imbalance cost.
+- The wind value factor is 0.400.
+- Negative-price hours are 19.5 percent of the sample.
+
+Full list: [docs/laboratory-disclaimer.md](docs/laboratory-disclaimer.md).
+
+---
+
+## 19. Status
+
+Working paper, 2026. Open manuscript. Synthetic laboratory. Institutional descriptions follow published SDAC/SIDC and Transparency rules as understood at the time of writing and should be checked against current NEMO Committee and ENTSO-E documentation before any operational use.
+
+---
+
+## 20. Related literature (entry points)
+
+These are starting citations, not a complete bibliography. The notebook reference list carries volume, pages and DOI where verified.
+
+- Sensfuß, Ragwitz and Genoese, *Energy Policy*, 2008 — merit-order effect.
+- Gürtler and Paulsen, *Energy Economics*, 2018 — wind and solar *forecasts* and German prices.
+- Hirth, *Energy Economics*, 2013 — value factors.
+- Pinson, Chevallier and Kariniotakis, *IEEE Trans. Power Syst.*, 2007 — imbalance-aware bidding.
+- Boehnke, Kolkmann, Leisen and Weber, *IET Renew. Power Gener.*, 2024 — coupled intraday absorption of German wind updates.
+- Weron, *International Journal of Forecasting*, 2014 — electricity price forecasting.
+- Aliyon and Ritvanen, *Energy*, 2024 — deep learning EPF in Europe.
+- Uniejewski and Ziel, *Renewable Energy*, 2026 — probabilistic load and RES as EPF features.
+- Lang et al., arXiv:2406.01465, 2024 — ECMWF AIFS.
+- Lam et al., *Science*, 2023 — GraphCast.
+- Hardy and Finney, *Meteorological Applications*, 2025 — AI weather to 100 m wind and power.
+- Hayek, *American Economic Review*, 1945 — knowledge in society.
+- Regulation (EU) No 543/2013 — publication of electricity market data.
+
+---
+
+## 21. Documentation map
+
+| Document | Question |
 |---|---|
-| [docs/README.md](docs/README.md) | Index of the `docs/` folder |
-| [docs/reading-the-manuscript.md](docs/reading-the-manuscript.md) | How to open and navigate the notebook |
-| [docs/institutional-background.md](docs/institutional-background.md) | SDAC, SIDC, balancing, document types A.44 / A.65 / A.69 / A.75 |
-| [docs/laboratory-disclaimer.md](docs/laboratory-disclaimer.md) | Which sentences may be cited, and which may not |
-| [docs/citation-and-reuse.md](docs/citation-and-reuse.md) | Licence scope and citation format |
+| [docs/README.md](docs/README.md) | What else is in `docs/`? |
+| [docs/reading-the-manuscript.md](docs/reading-the-manuscript.md) | How do I open the notebook? |
+| [docs/institutional-background.md](docs/institutional-background.md) | What are SDAC, SIDC and A.69? |
+| [docs/laboratory-disclaimer.md](docs/laboratory-disclaimer.md) | Which euros are synthetic? |
+| [docs/citation-and-reuse.md](docs/citation-and-reuse.md) | How do I cite this, and what does MIT not cover? |
 
 ---
 
-## Citation
+## 22. Glossary
 
-Plain text:
+| Term | Meaning in this paper |
+|---|---|
+| Residual load | Demand minus wind minus solar |
+| Value factor | Generation-weighted price divided by the time-weighted average price |
+| Dunkelflaute | Dark, still period: low wind, low solar, high load |
+| Filtration $F_\tau$ | Information available at lead $\tau$ |
+| Public baseline | TSO / ECMWF / Transparency objects everyone can see |
+| Private residual | Incremental description around that baseline |
+| NWP-style regime | Persistent, larger-error wind forecast in the laboratory |
+| AI-style regime | Persistent, smaller-error wind forecast in the laboratory |
+| False start | Thermal unit committed on a forecast residual load that does not arrive |
+
+---
+
+## 23. Frequently asked questions
+
+**Why a notebook instead of a PDF?**  
+GitHub’s in-browser PDF preview failed on the LibreOffice file (“Unable to render code block”). The notebook is the readable public object.
+
+**Why is there no code in the manuscript notebook?**  
+So that GitHub renders a paper rather than a laboratory. Mixing executable cells with thirty-five pages of prose made the object harder to read and easier to break.
+
+**Are the 12.90 EUR/MWh and 3.33 million EUR figures real German outcomes?**  
+No. They are laboratory magnitudes. See §18.
+
+**Does the paper claim that AIFS cuts 100 m wind MAE by 25–30 percent?**  
+No. That order of improvement is taken from an industry evaluation of WeatherNext 3 versus IFS. AIFS is cited as an operational data-driven system.
+
+**Does “prediction as power” mean abuse of dominance?**  
+No. The paper is explicit: it is not a competition-law allegation. It is a description of an information rent inside a forecast-clearing market.
+
+**Can I replace the laboratory with ENTSO-E data?**  
+Yes, in a sequel. You need a Transparency token and document types A.44, A.65, A.69 and A.75. This repository does not ship that token or those extracts.
+
+**May I fork this?**  
+Yes, under MIT, with the copyright notice retained.
+
+---
+
+## 24. Citation
 
 ```
 Aryan, R. (2026). Prediction as Power: Artificial Intelligence, Wind,
@@ -233,41 +414,39 @@ https://github.com/Rishabh-bgp/prediction-as-power
 ORCID: https://orcid.org/0009-0004-7595-9440
 ```
 
-GitHub and many reference managers will read [CITATION.cff](CITATION.cff) automatically (“Cite this repository”).
+GitHub’s “Cite this repository” button reads [CITATION.cff](CITATION.cff).
 
 ---
 
-## Licence and reuse
+## 25. Licence and reuse
 
-The repository is released under the [MIT License](LICENSE).
+Released under the [MIT License](LICENSE), copyright Er. Rishabh Aryan, 2026.
 
-You may copy, modify, merge, publish, and distribute the files in this repository, provided the copyright notice and permission notice are included.
+You may use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the files in this repository, provided the copyright notice and permission notice appear in all copies.
 
-The licence covers the author’s text and documentation. It does not transfer rights in:
-
-- ENTSO-E or TSO data
-- vendor weather products
-- third-party journal articles listed in the reference list
+MIT covers the author’s text and documentation. It does not transfer rights in ENTSO-E or TSO data, vendor weather products, or the journal articles in the reference list.
 
 ---
 
-## Contributing
+## 26. Contributing
 
-Corrections to citations, institutional descriptions, and typographical errors are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
+Please read [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Do not add confidential commercial forecasts or personal data. Do not present laboratory euros as official market statistics.
+Welcome: citation corrections, clearer institutional wording, typographical fixes, documentation improvements.
 
----
-
-## Status
-
-Working paper, 2026. The public object is the manuscript notebook. Laboratory magnitudes remain synthetic until a sequel is estimated on Transparency Platform series.
+Not welcome: confidential forecasts, personal data, pull requests that present laboratory euros as official statistics, or conversion of the manuscript notebook into an undocumented code dump.
 
 ---
 
-## Contact
+## 27. Security and data
+
+No credentials are stored in this repository. Do not commit Transparency Platform tokens, commercial API keys, or farm-level SCADA. If you open a sequel that uses official series, keep tokens in environment variables outside git.
+
+---
+
+## 28. Contact and correspondence
 
 Er. Rishabh Aryan  
 Indian Institute of Information Technology, Bhagalpur  
 [rishabh.250201011@iiitbh.ac.in](mailto:rishabh.250201011@iiitbh.ac.in)  
-[ORCID 0009-0004-7595-9440](https://orcid.org/0009-0004-7595-9440)
+ORCID: [0009-0004-7595-9440](https://orcid.org/0009-0004-7595-9440)
