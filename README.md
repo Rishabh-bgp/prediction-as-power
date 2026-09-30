@@ -8,7 +8,9 @@ Working paper and computational laboratory. A Germany-like hourly simulator comp
 
 Er. Rishabh Aryan, *Prediction as Power: Artificial Intelligence, Wind, and the Ordering of European Electricity Markets.*
 
-PDF in this repository: `Prediction_as_Power_Rishabh_Aryan.pdf`
+Manuscript (35 pages): [Prediction_as_Power_Rishabh_Aryan.pdf](Prediction_as_Power_Rishabh_Aryan.pdf)
+
+![Paper preview](paper_preview.png)
 
 Author: M.Tech (Artificial Intelligence and Data Science), Department of Computer Science and Engineering, Indian Institute of Information Technology, Bhagalpur.
 
