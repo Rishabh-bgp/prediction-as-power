@@ -51,6 +51,7 @@ If you have an hour: read the notebook through Section X and [docs/laboratory-di
 4. [Why the paper was written](#4-why-the-paper-was-written)
 5. [Abstract](#5-abstract)
 6. [Keywords](#6-keywords)
+6a. [Invitation to European universities and research scholars](#invitation-to-european-universities-and-research-scholars)
 7. [Who should read this repository](#7-who-should-read-this-repository)
 8. [Who should not treat it as a trading manual](#8-who-should-not-treat-it-as-a-trading-manual)
 9. [Files and what each one is for](#9-files-and-what-each-one-is-for)
@@ -118,6 +119,12 @@ A two-year hourly laboratory of a Germany-like zone coupled to a hydro neighbour
 Artificial intelligence; wind power forecasting; European electricity markets; merit-order effect; imbalance costs; day-ahead coupling; Single Intraday Coupling; residual load; value factor; Dunkelflaute; information; Transparency Platform.
 
 ---
+
+## Invitation to European universities and research scholars
+
+European universities, laboratories, and research scholars are welcome to use this working paper and the accompanying notebooks in their teaching, theses, and research, provided they cite the work and retain the MIT copyright notice. Laboratory euro figures must remain labelled as synthetic. Institutional claims about SDAC, SIDC, and balancing should be checked against current ENTSO-E and NEMO Committee documentation.
+
+Correspondence on reuse: rishabh.250201011@iiitbh.ac.in
 
 ## 7. Who should read this repository
 
