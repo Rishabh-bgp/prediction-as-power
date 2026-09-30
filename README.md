@@ -128,6 +128,7 @@ Do not use this repository to size a bid. The price function is stylised. The im
 prediction-as-power/
 ├── Prediction_as_Power_Rishabh_Aryan_Manuscript.ipynb   ← canonical paper
 ├── prediction_as_power_european_electricity_markets.ipynb
+├── notebooks/v1/                                        ← first coded laboratory
 ├── README.md                                            ← this handbook
 ├── LICENSE                                              ← MIT
 ├── CITATION.cff
@@ -149,6 +150,8 @@ prediction-as-power/
 | `docs/citation-and-reuse.md` | How to cite and what MIT does not cover |
 | `CONTRIBUTING.md` | How to propose a correction |
 | `CITATION.cff` | Automated citation on GitHub |
+| `notebooks/v1/prediction_as_power_european_electricity_markets.ipynb` | **Version 1 laboratory** (executable code, first draft) |
+
 
 The canonical manuscript notebook is **Markdown cells only**. It exists because GitHub’s PDF previewer failed on the LibreOffice file. Do not expect that notebook to train a model.
 
